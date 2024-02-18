@@ -1,9 +1,8 @@
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet AS base
 WORKDIR /app
-ENV ASPNETCORE_URLS=http://+:5002
-EXPOSE 5002
+ENV ASPNETCORE_HTTP_PORTS=5002
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk AS build
 WORKDIR /src
 COPY ["Services/Discount/Discount.API/Discount.API.csproj", "Services/Discount/Discount.API/"]
 RUN dotnet restore "Services/Discount/Discount.API/Discount.API.csproj"
